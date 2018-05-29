@@ -72,7 +72,7 @@
             <archive>
               <manifest>
                 <addClasspath>true</addClasspath>
-                <mainClass>TelegramBot.Bot</mainClass>
+                <mainClass>src.java.TelegramBot.Bot</mainClass>
               </manifest>
             </archive>
           </configuration>
