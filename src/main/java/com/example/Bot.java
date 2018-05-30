@@ -10,7 +10,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.getMessage().getLeftChatMember()!=null || update.getMessage().getNewChatMembers()!=null){
+        //if(update.getMessage().getLeftChatMember()!=null || update.getMessage().getNewChatMembers()!=null){
             DeleteMessage initDeleteMEssage = new org.telegram.telegrambots.api.methods.updatingmessages.DeleteMessage();
             initDeleteMEssage.setChatId(update.getMessage().getChatId().toString());
             initDeleteMEssage.setMessageId(update.getMessage().getMessageId());
@@ -19,7 +19,7 @@ public class Bot extends TelegramLongPollingBot {
             }catch(TelegramApiException ex){
 
             }
-        }
+        //}
     }
 //some text
     @Override

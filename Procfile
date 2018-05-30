@@ -1,1 +1,1 @@
-worker: java -jar target/TelegramBot-1.0-jar-with-dependencies.jar
+web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.jar
