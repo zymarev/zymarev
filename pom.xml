@@ -10,6 +10,7 @@
   <packaging>jar</packaging>
 
 
+
   <name>TelegramBot</name>
 
 
@@ -56,34 +57,28 @@
           <version>3.7.0</version>
         </plugin>
 
+
         <plugin>
-          <!-- Build an executable JAR -->
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.0</version>
-          <configuration>
-            <archive>
-
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                <addClasspath>true</addClasspath>
-
-                <classpathPrefix>../jar_files/</classpathPrefix>
-                <mainClass>Main</mainClass>
-              </manifest>
-              <manifestEntries>
-                <Class-Path>telegrambots-meta-3.6.1.jar</Class-Path>
-                <Class-Path>json-20160810.jar</Class-Path>
-                <Class-Path>javax.inject-1.jar</Class-Path>
-                <Class-Path>jackson-databind-2.8.7.jar</Class-Path>
-                <Class-Path>jackson-core-2.8.7.jar</Class-Path>
-                <Class-Path>jackson-annotations-2.8.0.jar</Class-Path>
-                <Class-Path>guice-4.1.0.jar</Class-Path>
-                <Class-Path>aopalliance-1.0.jar guava-19.0.jar</Class-Path>
-              </manifestEntries>
-            </archive>
-          </configuration>
-        </plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.example.Bot</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+            </execution>
+          </executions>
+      </plugin>
 
 
 
