@@ -6,7 +6,7 @@
 
   <groupId>TelegramBot</groupId>
   <artifactId>TelegramBot</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
 
@@ -33,7 +33,11 @@
       <artifactId>telegrambots</artifactId>
       <version>3.6</version>
     </dependency>
+
   </dependencies>
+
+
+
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -51,32 +55,44 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.7.0</version>
         </plugin>
+
         <plugin>
-          <groupId>com.heroku.sdk</groupId>
-          <artifactId>heroku-maven-plugin</artifactId>
-          <version>2.0.3</version>
+          <!-- Build an executable JAR -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.1.0</version>
           <configuration>
-            <processTypes>
-              <web>java $JAVA_OPTS -cp target/classes:target/dependency/* TelegramBot.Bot</web>
-            </processTypes>
+            <archive>
+
+              <manifest>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addClasspath>true</addClasspath>
+
+                <classpathPrefix>../jar_files/</classpathPrefix>
+                <mainClass>Main</mainClass>
+              </manifest>
+              <manifestEntries>
+                <Class-Path>telegrambots-meta-3.6.1.jar</Class-Path>
+                <Class-Path>json-20160810.jar</Class-Path>
+                <Class-Path>javax.inject-1.jar</Class-Path>
+                <Class-Path>jackson-databind-2.8.7.jar</Class-Path>
+                <Class-Path>jackson-core-2.8.7.jar</Class-Path>
+                <Class-Path>jackson-annotations-2.8.0.jar</Class-Path>
+                <Class-Path>guice-4.1.0.jar</Class-Path>
+                <Class-Path>aopalliance-1.0.jar guava-19.0.jar</Class-Path>
+              </manifestEntries>
+            </archive>
           </configuration>
         </plugin>
+
+
+
+
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.20.1</version>
         </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <addClasspath>true</addClasspath>
-                <mainClass>src.java.TelegramBot.Bot</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
+
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
@@ -85,6 +101,9 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
+
+
+
       </plugins>
     </pluginManagement>
   </build>
